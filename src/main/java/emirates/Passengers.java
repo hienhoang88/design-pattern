@@ -6,6 +6,7 @@ import org.openqa.selenium.support.FindBy;
 import srp.common.AbstractComponent;
 
 import java.util.List;
+import java.util.Map;
 
 public class Passengers extends AbstractComponent {
 
@@ -62,6 +63,15 @@ public class Passengers extends AbstractComponent {
         this.infantsNumberList.stream()
                 .filter(el -> el.getText().equals(number))
                 .findFirst().ifPresent(ele -> ele.click());
+    }
+
+    public void fillPassengerFilter(Map<String, Object> filters){
+        clickOnAdultsDropdown();
+        selectAdultsNumber(String.valueOf(filters.get("adultNo")));
+        clickOnChildrenDropdown();
+        selectChildrenNumber(String.valueOf(filters.get("childrenNo")));
+        clickOnInfantsDropdown();
+        selectInfantsNumber(String.valueOf(filters.get("infantsNo")));
     }
 
     @Override

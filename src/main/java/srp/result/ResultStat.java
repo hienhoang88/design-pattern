@@ -12,7 +12,7 @@ public class ResultStat extends AbstractComponent {
     @FindBy(id = "result-stats")
     private WebElement stat;
 
-    @FindBy(css = "div.rc")
+    @FindBy(css = "#search div.g")
     private List<WebElement> results;
 
     public ResultStat(WebDriver driver) {

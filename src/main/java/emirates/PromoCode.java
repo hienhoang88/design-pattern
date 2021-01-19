@@ -5,6 +5,8 @@ import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 import srp.common.AbstractComponent;
 
+import java.util.Map;
+
 public class PromoCode extends AbstractComponent {
 
     public PromoCode(WebDriver driver) {
@@ -14,8 +16,10 @@ public class PromoCode extends AbstractComponent {
     @FindBy(id="ctl00_c_CtPrOffer_txtEnterCode")
     private WebElement promoCode;
 
-    public void inputPromoCode(String code){
-        this.promoCode.sendKeys(code);
+    public void inputPromoCode(Map<String, Object> map){
+        if(Boolean.parseBoolean((String) map.get("isPromoted"))) {
+            this.promoCode.sendKeys(String.valueOf(map.get("promoCode")));
+        }
     }
 
     @Override
