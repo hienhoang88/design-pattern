@@ -83,7 +83,6 @@ public class OneWaySearchOption implements SearchOption{
         enterFromAirport(String.valueOf(criterias.get("fromAirport")));
         clickOnDepartureSelect();
         selectDepartureDate(String.valueOf(criterias.get("departureDate")));
-//        selectFlightClass(String.valueOf(criterias.get("flightClass")));
         enterToAirport(String.valueOf(criterias.get("toAirport")));
         clickOnFlexibleFlightIfNeeded(Boolean.parseBoolean((String) criterias.get("flexibleFlight")));
     }
