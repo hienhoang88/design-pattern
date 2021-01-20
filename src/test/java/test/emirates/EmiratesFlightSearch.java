@@ -6,7 +6,6 @@ import emirates.searchOption.OneWaySearchOption;
 import emirates.searchOption.ReturnSearchOption;
 import emirates.searchOption.SearchOption;
 import org.junit.Assert;
-import org.junit.BeforeClass;
 import org.openqa.selenium.support.PageFactory;
 import org.testng.annotations.BeforeTest;
 import org.testng.annotations.DataProvider;
@@ -23,19 +22,19 @@ public class EmiratesFlightSearch extends BaseTest {
     private LandingScreen landingScreen;
 
     @BeforeTest
-    public void pageSetup(){
+    public void pageSetup() {
         this.bookingScreen = new BookingScreen(driver);
         this.landingScreen = PageFactory.initElements(driver, LandingScreen.class);
     }
 
     @Test(dataProvider = "getData")
-    public void searchTest(SearchOption option, Map<String, Map<String, Object>> criteria){
+    public void searchTest(SearchOption option, Map<String, Map<String, Object>> criteria) {
         this.landingScreen.goTo();
         this.landingScreen.clickOnAcceptButtonIfPresent();
         this.landingScreen.clickOnNewSearch();
         Assert.assertTrue(this.bookingScreen.getPassengers().isDisplayed());
         this.bookingScreen.setSearchOption(option);
-        this.bookingScreen.getSearchOption().searchWithCriteria(criteria.get("search"));
+        this.bookingScreen.getSearchOption().searchWithCriteria(driver, criteria.get("search"));
         this.bookingScreen.getPassengers().fillPassengerFilter(criteria.get("passenger"));
         this.bookingScreen.getPromoCode().inputPromoCode(criteria.get("promotion"));
         this.bookingScreen.getSearch().clickOnSearchButton();
@@ -43,7 +42,7 @@ public class EmiratesFlightSearch extends BaseTest {
     }
 
     @DataProvider
-    public Object[][] getData(){
+    public Object[][] getData() {
         Map<String, Map<String, Object>> oneWaySearch = new HashMap<>();
         Map<String, Map<String, Object>> returnSearch = new HashMap<>();
 
@@ -58,17 +57,18 @@ public class EmiratesFlightSearch extends BaseTest {
         twoWay.put("fromAirport", "Paris (CDG)");
         twoWay.put("departureDate", LocalDateTime.now().plusDays(3).getDayOfMonth());
         twoWay.put("arrivalDate", LocalDateTime.now().plusDays(5).getDayOfMonth());
-        twoWay.put("flightClass", "Business Class");
-        twoWay.put("toAirport", "Leipzig Airport (LEJ)");
+        twoWay.put("departureFlightClass", "Business Class");
+        twoWay.put("arrivalFlightClass", "First Class");
+        twoWay.put("toAirport", "Hanoi (HAN)");
         twoWay.put("flexibleFlight", "true");
 
         Map<String, Object> passenger = new HashMap<>();
         passenger.put("adultNo", "3");
-        passenger.put("childrenNo", "0");
-        passenger.put("infantsNo", "0");
+        passenger.put("childrenNo", "1");
+        passenger.put("infantsNo", "1");
 
         Map<String, Object> promotion = new HashMap<>();
-        promotion.put("isPromoted","true");
+        promotion.put("isPromoted", "true");
         promotion.put("promoCode", "ABC123def");
 
         oneWaySearch.put("search", oneWay);
@@ -80,7 +80,7 @@ public class EmiratesFlightSearch extends BaseTest {
         returnSearch.put("promotion", promotion);
 
         return new Object[][]{
-//                {new OneWaySearchOption(), oneWaySearch},
+                {new OneWaySearchOption(), oneWaySearch},
                 {new ReturnSearchOption(), returnSearch}
         };
     }

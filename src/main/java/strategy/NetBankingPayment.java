@@ -6,28 +6,28 @@ import org.openqa.selenium.support.ui.Select;
 
 import java.util.Map;
 
-public class NetBankingPayment implements PaymentOptions{
+public class NetBankingPayment implements PaymentOptions {
 
-    @FindBy(id="bank")
+    @FindBy(id = "bank")
     private WebElement bank;
 
-    @FindBy(id="acc_number")
+    @FindBy(id = "acc_number")
     private WebElement acc_number;
 
-    @FindBy(id="pin")
+    @FindBy(id = "pin")
     private WebElement pin;
 
 
-    public void selectBank(String bank){
+    public void selectBank(String bank) {
         Select bankDropdown = new Select(this.bank);
         bankDropdown.selectByVisibleText(bank);
     }
 
-    public void enterAccountNumber(String number){
-        this. acc_number.sendKeys(number);
+    public void enterAccountNumber(String number) {
+        this.acc_number.sendKeys(number);
     }
 
-    public void enterPin(String pin){
+    public void enterPin(String pin) {
         this.pin.sendKeys(pin);
     }
 
