@@ -1,11 +1,14 @@
-package test.strategy;
+package test.proxy;
+
+
 
 import org.testng.annotations.BeforeTest;
 import org.testng.annotations.DataProvider;
 import org.testng.annotations.Test;
 import org.testng.collections.Maps;
-import strategy.PaymentScreen;
-import strategy.paymentOptionFactory.PaymentOptionFactory;
+import proxy.pages.PaymentOptions;
+import proxy.pages.PaymentScreen;
+import proxy.paymentOptionFactory.PaymentOptionFactory;
 import test.BaseTest;
 
 import java.util.Map;
@@ -16,6 +19,7 @@ public class PaymentScreenTest extends BaseTest {
 
     @BeforeTest
     public void setPaymentScreen() {
+        System.setProperty("env","PROD");
         this.paymentScreen = new PaymentScreen(driver);
     }
 
@@ -27,7 +31,7 @@ public class PaymentScreenTest extends BaseTest {
         this.paymentScreen.setPaymentOptions(PaymentOptionFactory.get(option));
         this.paymentScreen.pay(paymentDetails);
         this.paymentScreen.getCheckout().placeOrder();
-        System.out.println(this.paymentScreen.getCheckout().getOrderNumber());
+        System.out.println(this.paymentScreen.getCheckout().placeOrder());
     }
 
     @DataProvider

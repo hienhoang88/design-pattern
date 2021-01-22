@@ -1,52 +1,44 @@
 package template;
 
 import org.openqa.selenium.WebDriver;
-import org.openqa.selenium.WebElement;
-import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
-import org.openqa.selenium.support.ui.WebDriverWait;
+import template.pages.amazon.AmazonProductDescriptionPage;
+import template.pages.amazon.AmazonResultsPage;
+import template.pages.amazon.AmazonSearchPage;
 
 public class AmazonShopping extends ShoppingTemplate{
 
     private WebDriver driver;
-    private WebDriverWait wait;
     private String product;
+    private AmazonSearchPage amazonSearchPage;
+    private AmazonResultsPage amazonResultsPage;
+    private AmazonProductDescriptionPage productDescriptionPage;
 
     public AmazonShopping(WebDriver driver, String product){
         this.driver = driver;
         this.product = product;
-        this.wait = new WebDriverWait(driver, 30);
-        PageFactory.initElements(driver, this);
+        this.amazonSearchPage = PageFactory.initElements(driver, AmazonSearchPage.class);
+        this.amazonResultsPage = PageFactory.initElements(driver, AmazonResultsPage.class);
+        this.productDescriptionPage = PageFactory.initElements(driver, AmazonProductDescriptionPage.class);
     }
-
-    @FindBy(id="twotabsearchtextbox")
-    private WebElement searchBox;
-
-    @FindBy(id="nav-search-submit-button")
-    private WebElement searchBtn;
-
-    @FindBy(css = "span.a-size-medium")
-    private WebElement item;
 
     @Override
     public void launchSite() {
-        this.driver.get("https://www.google.com");
-
+        this.amazonSearchPage.goTo();
     }
 
     @Override
     public void searchForProduct() {
-        this.searchBox.sendKeys(this.product);
-        this.searchBtn.click();
+        this.amazonSearchPage.searchForProduct(product);
     }
 
     @Override
     public void selectProduct() {
-
+        this.amazonResultsPage.selectProduct();
     }
 
     @Override
     public void buy() {
-
+        this.productDescriptionPage.buy();
     }
 }
