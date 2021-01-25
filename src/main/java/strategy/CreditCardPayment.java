@@ -5,26 +5,26 @@ import org.openqa.selenium.support.FindBy;
 
 import java.util.Map;
 
-public class CreditCardPayment implements PaymentOptions{
+public class CreditCardPayment implements PaymentOptions {
 
-    @FindBy(id="cc")
+    @FindBy(id = "cc")
     private WebElement cardNumber;
 
-    @FindBy(id="year")
+    @FindBy(id = "year")
     private WebElement year;
 
-    @FindBy(id="cvv")
+    @FindBy(id = "cvv")
     private WebElement cvv;
 
-    public void enterCardNumber(String cc){
+    public void enterCardNumber(String cc) {
         this.cardNumber.sendKeys(cc);
     }
 
-    public void enterYear(String year){
+    public void enterYear(String year) {
         this.year.sendKeys(year);
     }
 
-    public void enterCVV(String cvv){
+    public void enterCVV(String cvv) {
         this.cvv.sendKeys(cvv);
     }
 

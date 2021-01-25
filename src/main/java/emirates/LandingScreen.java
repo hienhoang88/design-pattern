@@ -10,6 +10,10 @@ public class LandingScreen {
 
     private WebDriver driver;
     private WebDriverWait wait;
+    @FindBy(id = "onetrust-accept-btn-handler")
+    private WebElement acceptButton;
+    @FindBy(linkText = "New search")
+    private WebElement newSearchButton;
 
     public LandingScreen(final WebDriver driver) {
         this.driver = driver;
@@ -17,27 +21,22 @@ public class LandingScreen {
         PageFactory.initElements(driver, this);
     }
 
-    @FindBy(id="onetrust-accept-btn-handler")
-    private WebElement acceptButton;
-
-    @FindBy(linkText = "New search")
-    private WebElement newSearchButton;
-
-    public void goTo(){
+    public void goTo() {
         driver.get("https://fly10.emirates.com/CAB/InvalidProcess.aspx?mod=err&typ=nocookie&req=/CAB/IBE/SearchAvailability.aspx");
     }
 
-    public void clickOnAcceptButtonIfPresent(){
-        try{
-            acceptButton.click();
-        }catch (Exception e){
+    public void clickOnAcceptButtonIfPresent() {
+        try {
+            if (this.acceptButton.isDisplayed()) {
+                acceptButton.click();
+            }
+        } catch (Exception e) {
         }
     }
 
-    public void clickOnNewSearch(){
-        wait.until((d) -> this.newSearchButton.isDisplayed());
+    public void clickOnNewSearch() {
+        wait.until((d) -> this.newSearchButton.isEnabled());
         newSearchButton.click();
-
     }
 
 }

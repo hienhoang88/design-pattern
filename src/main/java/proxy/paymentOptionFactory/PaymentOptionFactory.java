@@ -1,9 +1,10 @@
-package paymentOptionFactory;
+package proxy.paymentOptionFactory;
 
-import strategy.CreditCardPayment;
-import strategy.NetBankingPayment;
-import strategy.PaymentOptions;
-import strategy.PaypalPayment;
+
+import proxy.pages.CreditCardPayment;
+import proxy.pages.NetBankingPayment;
+import proxy.pages.PaymentOptions;
+import proxy.pages.PaypalPayment;
 
 import java.util.HashMap;
 import java.util.Map;

@@ -4,8 +4,8 @@ import org.testng.annotations.BeforeTest;
 import org.testng.annotations.DataProvider;
 import org.testng.annotations.Test;
 import org.testng.collections.Maps;
-import paymentOptionFactory.PaymentOptionFactory;
-import strategy.*;
+import strategy.PaymentScreen;
+import strategy.paymentOptionFactory.PaymentOptionFactory;
 import test.BaseTest;
 
 import java.util.Map;
@@ -15,12 +15,12 @@ public class PaymentScreenTest extends BaseTest {
     private PaymentScreen paymentScreen;
 
     @BeforeTest
-    public void setPaymentScreen(){
+    public void setPaymentScreen() {
         this.paymentScreen = new PaymentScreen(driver);
     }
 
     @Test(dataProvider = "getData")
-    public void paymentTest(String option, Map<String, String> paymentDetails){
+    public void paymentTest(String option, Map<String, String> paymentDetails) {
         this.paymentScreen.goTo();
         this.paymentScreen.getUserInformation().enterDetails("Hien", "Hoang",
                 "hienhoangminh290788@gmail.com");
@@ -31,7 +31,7 @@ public class PaymentScreenTest extends BaseTest {
     }
 
     @DataProvider
-    public Object[][] getData(){
+    public Object[][] getData() {
 
         Map<String, String> cc = Maps.newHashMap();
         cc.put("cc", "4242424242424242");

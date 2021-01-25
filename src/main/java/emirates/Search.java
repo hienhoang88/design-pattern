@@ -7,14 +7,14 @@ import srp.common.AbstractComponent;
 
 public class Search extends AbstractComponent {
 
+    @FindBy(css = "div#ctl00_c_pnlFF a")
+    private WebElement searchBtn;
+
     public Search(WebDriver driver) {
         super(driver);
     }
 
-    @FindBy(css="div#ctl00_c_pnlFF a")
-    private WebElement searchBtn;
-
-    public void clickOnSearchButton(){
+    public void clickOnSearchButton() {
         this.searchBtn.click();
     }
 

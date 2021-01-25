@@ -7,21 +7,21 @@ import org.openqa.selenium.support.PageFactory;
 
 public class Checkout {
 
-    @FindBy(id="buy")
+    @FindBy(id = "buy")
     private WebElement buyNow;
 
-    @FindBy(id="ordernumber")
+    @FindBy(id = "ordernumber")
     private WebElement orderNumber;
 
-    public Checkout(final WebDriver driver){
+    public Checkout(final WebDriver driver) {
         PageFactory.initElements(driver, this);
     }
 
-    public void placeOrder(){
+    public void placeOrder() {
         this.buyNow.click();
     }
 
-    public String getOrderNumber(){
+    public String getOrderNumber() {
         return this.orderNumber.getText();
     }
 }

@@ -7,32 +7,32 @@ import org.openqa.selenium.support.PageFactory;
 
 public class UserInformation {
 
-    @FindBy(id="fn")
+    @FindBy(id = "fn")
     private WebElement firstName;
 
-    @FindBy(id="ln")
+    @FindBy(id = "ln")
     private WebElement lastName;
 
-    @FindBy(id="email")
+    @FindBy(id = "email")
     private WebElement email;
 
-    public UserInformation(final WebDriver driver){
+    public UserInformation(final WebDriver driver) {
         PageFactory.initElements(driver, this);
     }
 
-    public void enterFirstName(String firstName){
+    public void enterFirstName(String firstName) {
         this.firstName.sendKeys(firstName);
     }
 
-    public void enterLastName(String lastName){
+    public void enterLastName(String lastName) {
         this.lastName.sendKeys(lastName);
     }
 
-    public void enterEmail(String email){
+    public void enterEmail(String email) {
         this.email.sendKeys(email);
     }
 
-    public void enterDetails(String firstName, String lastName, String email){
+    public void enterDetails(String firstName, String lastName, String email) {
         enterFirstName(firstName);
         enterLastName(lastName);
         enterEmail(email);

@@ -9,15 +9,15 @@ import java.util.Map;
 
 public class PromoCode extends AbstractComponent {
 
+    @FindBy(id = "ctl00_c_CtPrOffer_txtEnterCode")
+    private WebElement promoCode;
+
     public PromoCode(WebDriver driver) {
         super(driver);
     }
 
-    @FindBy(id="ctl00_c_CtPrOffer_txtEnterCode")
-    private WebElement promoCode;
-
-    public void inputPromoCode(Map<String, Object> map){
-        if(Boolean.parseBoolean((String) map.get("isPromoted"))) {
+    public void inputPromoCode(Map<String, Object> map) {
+        if (Boolean.parseBoolean((String) map.get("isPromoted"))) {
             this.promoCode.sendKeys(String.valueOf(map.get("promoCode")));
         }
     }
